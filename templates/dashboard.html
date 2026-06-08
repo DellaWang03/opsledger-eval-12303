@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="panel">
+  <h1>Operations dashboard</h1>
+  <div class="metrics">
+    <div><span>Total</span><strong>{{ summary.total }}</strong></div>
+    <div><span>Open</span><strong>{{ summary.open }}</strong></div>
+    <div><span>Blocked</span><strong>{{ summary.blocked }}</strong></div>
+    <div><span>High priority</span><strong>{{ summary.high_priority }}</strong></div>
+  </div>
+</section>
+
+<section class="panel">
+  <h2>Team load</h2>
+  <ul class="team-list">
+    {% for team, count in teams.items() %}
+      <li><span>{{ team }}</span><strong>{{ count }}</strong></li>
+    {% endfor %}
+  </ul>
+</section>
+
+<section class="panel">
+  <h2>Upcoming work</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Team</th>
+        <th>Priority</th>
+        <th>Status</th>
+        <th>Due</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for order in orders %}
+        <tr>
+          <td><a href="/work-orders/{{ order.id }}">{{ order.title }}</a></td>
+          <td>{{ order.team }}</td>
+          <td>{{ order.priority }}</td>
+          <td>{{ order.status }}</td>
+          <td>{{ order.due_at.strftime("%Y-%m-%d %H:%M") }}</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</section>
+{% endblock %}
+

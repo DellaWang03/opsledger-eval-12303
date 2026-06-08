@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="panel">
+  <h1>Work orders</h1>
+  <form class="filters" method="get">
+    <label>Status <input name="status" value="{{ filters.get('status', '') }}"></label>
+    <label>Priority <input name="priority" value="{{ filters.get('priority', '') }}"></label>
+    <label>Team <input name="team" value="{{ filters.get('team', '') }}"></label>
+    <button type="submit">Apply</button>
+  </form>
+</section>
+
+<section class="panel">
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Title</th>
+        <th>Team</th>
+        <th>Priority</th>
+        <th>Status</th>
+        <th>Assignee</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for order in orders %}
+        <tr>
+          <td>{{ order.id }}</td>
+          <td><a href="/work-orders/{{ order.id }}">{{ order.title }}</a></td>
+          <td>{{ order.team }}</td>
+          <td>{{ order.priority }}</td>
+          <td>{{ order.status }}</td>
+          <td>{{ order.assignee }}</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</section>
+{% endblock %}
+

@@ -1,0 +1,102 @@
+body {
+  margin: 0;
+  color: #18202a;
+  background: #f5f7fb;
+  font: 15px/1.5 -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+a {
+  color: #2358d4;
+  text-decoration: none;
+}
+
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  padding: 16px 28px;
+  background: #172033;
+}
+
+.topbar a {
+  color: #fff;
+  font-weight: 700;
+}
+
+.topbar nav {
+  display: flex;
+  gap: 18px;
+}
+
+.page {
+  width: min(1080px, calc(100vw - 32px));
+  margin: 24px auto;
+}
+
+.panel {
+  margin-bottom: 18px;
+  padding: 20px;
+  background: #fff;
+  border: 1px solid #dfe5ef;
+  border-radius: 8px;
+}
+
+.metrics {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+}
+
+.metrics div,
+.team-list li {
+  display: flex;
+  justify-content: space-between;
+  padding: 12px;
+  background: #eef3fb;
+  border-radius: 6px;
+}
+
+.team-list {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  padding: 0;
+  list-style: none;
+}
+
+.filters {
+  display: flex;
+  gap: 12px;
+  align-items: end;
+}
+
+input,
+button {
+  padding: 8px 10px;
+  border: 1px solid #b9c3d2;
+  border-radius: 6px;
+}
+
+button {
+  color: #fff;
+  background: #2358d4;
+  cursor: pointer;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th,
+td {
+  padding: 10px;
+  border-bottom: 1px solid #e5e9f0;
+  text-align: left;
+}
+
+.detail-grid {
+  display: grid;
+  grid-template-columns: 130px 1fr;
+  gap: 8px;
+}
+

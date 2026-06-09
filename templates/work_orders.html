@@ -7,6 +7,15 @@
     <label>Status <input name="status" value="{{ filters.get('status', '') }}"></label>
     <label>Priority <input name="priority" value="{{ filters.get('priority', '') }}"></label>
     <label>Team <input name="team" value="{{ filters.get('team', '') }}"></label>
+    <label>Assignee <input name="assignee" value="{{ filters.get('assignee', '') }}"></label>
+    <label>Escalation Level <input name="escalation_level" value="{{ filters.get('escalation_level', '') }}"></label>
+    <label>Escalation Status
+      <select name="escalation_status">
+        <option value="">All</option>
+        <option value="none" {{ 'selected' if filters.get('escalation_status') == 'none' }}>None</option>
+        <option value="escalated" {{ 'selected' if filters.get('escalation_status') == 'escalated' }}>Escalated</option>
+      </select>
+    </label>
     <button type="submit">Apply</button>
   </form>
 </section>
@@ -21,6 +30,7 @@
         <th>Priority</th>
         <th>Status</th>
         <th>Assignee</th>
+        <th>Escalation</th>
       </tr>
     </thead>
     <tbody>
@@ -32,10 +42,10 @@
           <td>{{ order.priority }}</td>
           <td>{{ order.status }}</td>
           <td>{{ order.assignee }}</td>
+          <td>{{ order.escalation_level }}{% if order.escalated_to %} → {{ order.escalated_to }}{% endif %}</td>
         </tr>
       {% endfor %}
     </tbody>
   </table>
 </section>
 {% endblock %}
-

@@ -10,7 +10,45 @@
     <dt>Assignee</dt><dd>{{ order.assignee }}</dd>
     <dt>Location</dt><dd>{{ order.location }}</dd>
     <dt>Due</dt><dd>{{ order.due_at.strftime("%Y-%m-%d %H:%M") }}</dd>
+    <dt>Escalation Level</dt><dd>{{ order.escalation_level }}</dd>
+    {% if order.escalated_to %}
+    <dt>Escalated To</dt><dd>{{ order.escalated_to }}</dd>
+    {% endif %}
   </dl>
+</section>
+
+<section class="panel">
+  <h2>Recommended On-Call</h2>
+  <table>
+    <thead>
+      <tr><th>Engineer</th><th>Score</th><th>Current Load</th></tr>
+    </thead>
+    <tbody>
+      {% for rec in recommendations %}
+      <tr>
+        <td>{{ rec.name }}</td>
+        <td>{{ rec.score }}</td>
+        <td>{{ rec.load }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</section>
+
+<section class="panel">
+  <h2>Escalate</h2>
+  <form method="post" action="/work-orders/{{ order.id }}/escalate">
+    <label>Escalate To
+      <select name="target">
+        {% for rec in recommendations %}
+        <option value="{{ rec.name }}">{{ rec.name }} (score: {{ rec.score }})</option>
+        {% endfor %}
+      </select>
+    </label>
+    <label>Your Name <input name="actor" required></label>
+    <label>Reason <input name="reason" required></label>
+    <button type="submit">Escalate</button>
+  </form>
 </section>
 
 <section class="panel">
@@ -31,4 +69,3 @@
   </ul>
 </section>
 {% endblock %}
-

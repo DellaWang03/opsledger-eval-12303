@@ -15,6 +15,8 @@ class WorkOrder:
     assignee: str
     location: str
     notes: list[str] = field(default_factory=list)
+    escalation_level: int = 0
+    escalated_to: str | None = None
 
 
 @dataclass
@@ -26,3 +28,9 @@ class ActivityLog:
     created_at: datetime
     detail: str
 
+
+@dataclass
+class OnCallEngineer:
+    name: str
+    teams: list[str]
+    current_load: int = 0
